@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2f8e47;
+  --color-background-light: #f6f8f6;
+  --color-background-dark: #141e16;
+  --color-deep-green: #032014;
+  --font-display: 'Lexend', sans-serif;
+  --font-serif-display: 'Crimson Pro', serif;
+}
+
+body {
+  font-family: 'Lexend', sans-serif;
+  background-color: #f6f8f6;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.serif-headline {
+  font-family: 'Crimson Pro', serif;
+}
+
+.font-classic {
+  font-family: 'Playfair Display', serif;
+}
+
+html.dark body {
+  background-color: #141e16;
+  color: #f1f5f9;
+}

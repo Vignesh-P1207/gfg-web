@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GFG Student Chapter | Information Portal</title>
+  <meta name="description" content="GeeksforGeeks Student Chapter - A vibrant community of passionate coders and technology enthusiasts building tomorrow's tech leaders." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⟨/⟩</span>
+        <span class="logo-text">GFG Chapter</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="community.html" class="nav-link">Community</a></li>
+        <li><a href="#team" class="nav-link">Team</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+      <a href="community.html" class="btn-primary nav-cta">Join Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-blob blob-1"></div>
+      <div class="hero-blob blob-2"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        GeeksforGeeks Student Chapter
+      </div>
+      <h1 class="hero-title">Building Tomorrow's<br /><span class="gradient-text">Tech Leaders</span></h1>
+      <p class="hero-subtitle">We invest in students when the curiosity speaks loudest — before the buzz and the metrics, when the truest expression of potential is the craft itself.</p>
+      <div class="hero-actions">
+        <a href="community.html" class="btn-primary btn-lg" id="joinBtn">Join the Chapter</a>
+        <a href="events.html" class="btn-outline btn-lg">View Events</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Active Members</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="40">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Events Yearly</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="12">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Awards Won</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="code-card">
+        <div class="code-header">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="code-title">gfg_chapter.py</span>
+        </div>
+        <pre class="code-body"><code><span class="kw">class</span> <span class="cls">GFGChapter</span>:
+  <span class="kw">def</span> <span class="fn">__init__</span>(self):
+    self.members = <span class="num">500</span>
+    self.events  = <span class="num">40</span>
+    self.mission = <span class="str">"Build Leaders"</span>
+
+  <span class="kw">def</span> <span class="fn">join</span>(self, student):
+    student.skills.<span class="fn">level_up</span>()
+    student.network.<span class="fn">expand</span>()
+    <span class="kw">return</span> <span class="str">"Welcome! 🚀"</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">About the Chapter</span>
+        <h2 class="section-title">Where Geeks <span class="gradient-text">Connect, Code,</span> and Conquer.</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>The GeeksforGeeks Student Chapter at our university is a vibrant community of passionate coders and technology enthusiasts. We aim to bridge the gap between academic theory and industry requirements by providing a platform for students to practice coding, solve complex problems, and prepare for top-tier technical interviews.</p>
+          <p>Our chapter hosts workshops, hackathons, and guest lectures by industry leaders from companies like Google, Meta, and Microsoft — all to help you grow beyond the classroom.</p>
+          <a href="#mission" class="btn-outline">Learn Our Mission</a>
+        </div>
+        <div class="about-cards">
+          <div class="info-card card-green">
+            <span class="material-icons card-icon">code</span>
+            <h3>Hands-On Coding</h3>
+            <p>Weekly coding sessions on DSA, algorithms, and system design problems.</p>
+          </div>
+          <div class="info-card card-dark">
+            <span class="material-icons card-icon">group</span>
+            <h3>Peer Learning</h3>
+            <p>Study groups, mentorship programs, and collaborative projects.</p>
+          </div>
+          <div class="info-card card-dark">
+            <span class="material-icons card-icon">emoji_events</span>
+            <h3>Competitions</h3>
+            <p>Monthly hackathons and competitive coding contests with prizes.</p>
+          </div>
+          <div class="info-card card-green">
+            <span class="material-icons card-icon">business</span>
+            <h3>Industry Connect</h3>
+            <p>Guest lectures and networking with top tech professionals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="section mission-section" id="mission">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Mission & Values</span>
+        <h2 class="section-title">Our Core <span class="gradient-text">Objectives</span></h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card" data-delay="0">
+          <div class="mission-icon">
+            <span class="material-icons">trending_up</span>
+          </div>
+          <h3>Skill Development</h3>
+          <p>Regular workshops on DSA, Web Dev, and AI/ML to stay ahead of the curve and meet industry expectations.</p>
+        </div>
+        <div class="mission-card" data-delay="100">
+          <div class="mission-icon">
+            <span class="material-icons">hub</span>
+          </div>
+          <h3>Networking</h3>
+          <p>Connect with alumni and industry professionals through guest lectures, meetups, and online forums.</p>
+        </div>
+        <div class="mission-card" data-delay="200">
+          <div class="mission-icon">
+            <span class="material-icons">military_tech</span>
+          </div>
+          <h3>Competitions</h3>
+          <p>Monthly hackathons and coding contests to test and hone problem-solving skills in a competitive environment.</p>
+        </div>
+        <div class="mission-card" data-delay="300">
+          <div class="mission-icon">
+            <span class="material-icons">school</span>
+          </div>
+          <h3>Mentorship</h3>
+          <p>One-on-one guidance from experienced professionals and senior members to accelerate your growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section team-section" id="team">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">The Team</span>
+        <h2 class="section-title">Club <span class="gradient-text">Coordinators</span></h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #2f8e47, #1a5e2e)">AR</div>
+          <h3>Alex Rivera</h3>
+          <span class="team-role">Chapter Lead</span>
+          <div class="team-socials">
+            <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-icon" aria-label="GitHub">gh</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #1a73e8, #0d47a1)">SC</div>
+          <h3>Sarah Chen</h3>
+          <span class="team-role">Technical Head</span>
+          <div class="team-socials">
+            <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-icon" aria-label="GitHub">gh</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #e67e22, #a04000)">DP</div>
+          <h3>David Park</h3>
+          <span class="team-role">Events Manager</span>
+          <div class="team-socials">
+            <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-icon" aria-label="GitHub">gh</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #9b59b6, #6c1cb7)">EM</div>
+          <h3>Elena Moretti</h3>
+          <span class="team-role">Outreach Lead</span>
+          <div class="team-socials">
+            <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-icon" aria-label="GitHub">gh</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-blob"></div>
+        <h2>Ready to Level Up Your Tech Game?</h2>
+        <p>Join 500+ students already part of our thriving community. Your journey to becoming a tech leader starts here.</p>
+        <div class="cta-actions">
+          <a href="community.html" class="btn-white">Join the Chapter</a>
+          <a href="#" class="btn-outline-white">Join as Mentor</a>
+        </div>
+        <div class="cta-links">
+          <a href="#">Guidelines</a>
+          <a href="events.html">Past Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-icon">⟨/⟩</span>
+          <span class="logo-text">GFG Chapter</span>
+        </a>
+        <p>Building tomorrow's tech leaders through code, community, and competition.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="community.html">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">DSA Roadmap</a></li>
+          <li><a href="#">Interview Prep</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Blogs</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Discord</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 GFG Student Chapter. All rights reserved. Powered by <a href="https://geeksforgeeks.org" target="_blank">GeeksforGeeks</a>.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
