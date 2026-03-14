@@ -1,9 +1,45 @@
-import { useEffect, useRef, useMemo } from 'react'
+import { useEffect, useRef, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useMotionValueEvent, useScroll, useTransform, useSpring } from 'framer-motion'
 import Footer from '../components/Footer'
 import SpotlightCard from '../components/SpotlightCard'
 import TiltedCard from '../components/TiltedCard'
+
+/**
+ * Text starts WHITE (matching surrounding hero text).
+ * The moment the user scrolls, a yellow highlight sweeps left→right
+ * using clip-path, simultaneously revealing dark text on yellow beneath.
+ */
+function HighlightText({ children, color = '#d9f99d', delay = 0.15 }) {
+  const { scrollY } = useScroll()
+  const [triggered, setTriggered] = useState(false)
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    if (latest > 20 && !triggered) {
+      setTriggered(true)
+    }
+  })
+
+  return (
+    <span className="relative inline-block align-baseline">
+      {/* Layer 1: white text — always visible as the base */}
+      <span className="relative text-white font-medium not-italic px-1">
+        {children}
+      </span>
+
+      {/* Layer 2: yellow bar + dark text, clipped to reveal left→right */}
+      <motion.span
+        className="absolute inset-0 font-medium not-italic px-1 overflow-hidden whitespace-nowrap"
+        style={{ background: color, color: '#032014' }}
+        initial={{ clipPath: 'inset(0 100% 0 0 round 2px)' }}
+        animate={triggered ? { clipPath: 'inset(0 0% 0 0 round 2px)' } : {}}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  )
+}
 
 const coords = [
   { name: 'Alex Rivera', role: 'Chapter Lead', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA99aza8l6Hl-mv8u_SU6g6ATJD8oXb5vK1BwNH2EOOjcSI7uxW-h4LEIddxdrtT7aXKNMLaEFRwhbLiagvIhiaXMgprRwjrJYVAf6zqT2KOZSxVoEZbBcuUZNaBE64WAtlJWyiSoMLNMRl3nzFQFrZnSUrZHz6_u8Ni2VNKSZ8XLvuwOqoKxG3hB-fjp29z_xLI-nts5hbWdw9bhjBXddJXDNlj-YZnrsTbnPsRMqSBYNKFyiJ1dw_tMQaXUl5r62GNbuN0GGRg6c' },
@@ -191,9 +227,9 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl">
             <p className="text-lg md:text-xl font-light text-slate-300/90 leading-relaxed">
               We invest in students when the curiosity speaks loudest — before the buzz and the metrics, when{' '}
-              <span className="bg-[#d9f99d] text-[#032014] px-1 font-medium not-italic">
+              <HighlightText color="#d9f99d" delay={0.4}>
                 the truest expression of potential is the craft itself.
-              </span>
+              </HighlightText>
             </p>
           </div>
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -284,16 +320,8 @@ export default function HomePage() {
                 />
                 {/* Info below card */}
                 <div className="w-full px-1">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="font-sc text-lg font-semibold text-white leading-tight">{name}</h3>
-                      <p className="font-garamond text-sm text-[#2f8e47] mt-0.5">{role}</p>
-                    </div>
-                    <div className="flex gap-3 text-[#4a6e54] mt-1">
-                      <span className="material-symbols-outlined text-xl cursor-pointer hover:text-[#4ade80] transition-colors">alternate_email</span>
-                      <span className="material-symbols-outlined text-xl cursor-pointer hover:text-[#4ade80] transition-colors">share</span>
-                    </div>
-                  </div>
+                  <h3 className="font-sc text-lg font-semibold text-white leading-tight">{name}</h3>
+                  <p className="font-garamond text-sm text-[#2f8e47] mt-0.5">{role}</p>
                 </div>
               </div>
             ))}
