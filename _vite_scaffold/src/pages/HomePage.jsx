@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useMotionValueEvent, useScroll, useTransform, useSpring } from 'framer-motion'
 import Footer from '../components/Footer'
@@ -62,27 +62,7 @@ const galleryImages = [
   { id: 4, src: '/images/media__1773428577700.jpg', top: '20%', left: '60%', scale: 1.0, rotate: -5, depth: -0.25 },
 ]
 
-function useCountUp(target, duration = 1800) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      observer.disconnect()
-      let start = 0
-      const step = target / (duration / 16)
-      const timer = setInterval(() => {
-        start += step
-        if (start >= target) { start = target; clearInterval(timer) }
-        el.textContent = Math.floor(start) + '+'
-      }, 16)
-    }, { threshold: 0.4 })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [target, duration])
-  return ref
-}
+
 
 function ScrubbedAbout() {
   const containerRef = useRef(null)

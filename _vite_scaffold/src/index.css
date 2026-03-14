@@ -20,6 +20,11 @@
 body {
   font-family: 'Lexend', sans-serif;
   background-color: #f6f8f6;
+  cursor: url('/cursor-gfg.svg') 16 16, auto;
+}
+
+a, button, [role="button"], input[type="submit"], .cursor-pointer {
+  cursor: url('/cursor-gfg.svg') 16 16, pointer;
 }
 
 .material-symbols-outlined {
