@@ -1,0 +1,70 @@
+.card-spotlight {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(47, 142, 71, 0.18);
+  background-color: #0d1810;
+  padding: 2rem;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(47, 142, 71, 0.12);
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+.card-spotlight:hover {
+  border-color: rgba(47, 142, 71, 0.35);
+  transform: translateY(-6px);
+}
+
+/* Spotlight mouse-follow layer */
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 75%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 1;
+}
+
+/* Aurora blob at the bottom */
+.card-spotlight::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -20px;
+  right: -20px;
+  height: 200px;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 100%,
+    rgba(47, 142, 71, 0.55) 0%,
+    rgba(20, 180, 90, 0.3) 30%,
+    rgba(10, 100, 50, 0.15) 60%,
+    transparent 100%
+  );
+  filter: blur(28px);
+  opacity: 0.7;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-spotlight:hover::after {
+  opacity: 1;
+  filter: blur(20px);
+}
+
+/* Make sure card content sits above the aurora */
+.card-spotlight > * {
+  position: relative;
+  z-index: 2;
+}

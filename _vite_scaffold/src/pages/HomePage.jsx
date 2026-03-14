@@ -2,6 +2,8 @@ import { useEffect, useRef, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Footer from '../components/Footer'
+import SpotlightCard from '../components/SpotlightCard'
+import TiltedCard from '../components/TiltedCard'
 
 const coords = [
   { name: 'Alex Rivera', role: 'Chapter Lead', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA99aza8l6Hl-mv8u_SU6g6ATJD8oXb5vK1BwNH2EOOjcSI7uxW-h4LEIddxdrtT7aXKNMLaEFRwhbLiagvIhiaXMgprRwjrJYVAf6zqT2KOZSxVoEZbBcuUZNaBE64WAtlJWyiSoMLNMRl3nzFQFrZnSUrZHz6_u8Ni2VNKSZ8XLvuwOqoKxG3hB-fjp29z_xLI-nts5hbWdw9bhjBXddJXDNlj-YZnrsTbnPsRMqSBYNKFyiJ1dw_tMQaXUl5r62GNbuN0GGRg6c' },
@@ -11,9 +13,9 @@ const coords = [
 ]
 
 const objectives = [
-  { icon: 'school', title: 'Skill Development', desc: 'Regular workshops on DSA, Web Dev, and AI/ML to stay ahead of the curve.' },
-  { icon: 'groups', title: 'Networking', desc: 'Connect with alumni and industry professionals through guest lectures and meetups.' },
-  { icon: 'workspace_premium', title: 'Competitions', desc: 'Monthly hackathons and coding contests to test and improve problem-solving skills.' },
+  { icon: 'school', title: 'Skill Development', desc: 'Regular workshops on DSA, Web Dev, and AI/ML to stay ahead of the curve.', link: 'Explore Workshops' },
+  { icon: 'groups', title: 'Networking', desc: 'Connect with alumni and industry professionals through guest lectures and meetups.', link: 'Meet the Community' },
+  { icon: 'workspace_premium', title: 'Competitions', desc: 'Monthly hackathons and coding contests to test and improve problem-solving skills.', link: 'View Events' },
 ]
 
 // Custom images for the scatter gallery (generated earlier)
@@ -213,64 +215,89 @@ export default function HomePage() {
       <ScrubbedAbout />
 
       {/* ── Mission & Values ── */}
-      <section className="bg-[#2f8e47]/5 py-24">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <p className="text-sm font-bold uppercase tracking-widest text-[#2f8e47]">Mission &amp; Values</p>
-          <h2 className="mt-4 text-3xl font-bold text-slate-900 dark:text-white md:text-4xl">Our Core Objectives</h2>
-          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {objectives.map(({ icon, title, desc }) => (
-              <motion.div
+      <section className="bg-[#0b1510] py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <p className="font-sc text-sm tracking-[0.3em] text-[#2f8e47] mb-3">Mission &amp; Values</p>
+            <h2 className="font-sc text-5xl font-semibold text-white md:text-6xl">Our Core Objectives</h2>
+          </div>
+          {/* Cards */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {objectives.map(({ icon, title, desc, link }) => (
+              <SpotlightCard
                 key={title}
-                whileHover={{ y: -8 }}
-                className="group rounded-2xl bg-white dark:bg-[#0d1a10] p-8 shadow-xl shadow-[#2f8e47]/5 transition-colors"
-                viewport={{ once: true }}
+                spotlightColor="rgba(47, 142, 71, 0.18)"
               >
-                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-[#2f8e47]/10 text-[#2f8e47] group-hover:bg-[#2f8e47] group-hover:text-white transition-colors">
-                  <span className="material-symbols-outlined text-3xl">{icon}</span>
+                {/* Icon pill — top left */}
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#2f8e47]/15 text-[#4ade80] mb-8">
+                  <span className="material-symbols-outlined text-2xl">{icon}</span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">{title}</h3>
-                <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">{desc}</p>
-              </motion.div>
+                {/* Text content */}
+                <h3 className="font-sc text-2xl font-semibold text-white mb-3 leading-snug">{title}</h3>
+                <p className="font-garamond text-[#8aab92] leading-relaxed mb-8">{desc}</p>
+                {/* Learn more link */}
+                <button className="font-garamond italic text-base text-[#4ade80]/80 underline underline-offset-4 decoration-[#2f8e47]/50 hover:text-[#4ade80] hover:decoration-[#4ade80] transition-all">
+                  {link}
+                </button>
+              </SpotlightCard>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── Team ── */}
-      <section className="mx-auto max-w-7xl px-6 py-24">
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row mb-12">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-widest text-[#2f8e47]">The Team</p>
-            <h2 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">Club Coordinators</h2>
+      <section className="bg-[#0b1510] py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row mb-14">
+            <div>
+              <p className="font-sc text-xs tracking-[0.3em] text-[#2f8e47] mb-2">The Team</p>
+              <h2 className="font-sc text-4xl font-semibold text-white">Club Coordinators</h2>
+            </div>
+            <button className="flex items-center gap-2 font-garamond italic text-[#4ade80]/80 hover:text-[#4ade80] underline underline-offset-4 decoration-[#2f8e47]/50 transition-all">
+              View All Members <span className="material-symbols-outlined text-base not-italic">north_east</span>
+            </button>
           </div>
-          <button className="flex items-center gap-2 font-bold text-[#2f8e47] hover:underline">
-            View All Members <span className="material-symbols-outlined">north_east</span>
-          </button>
-        </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {coords.map(({ name, role, img }) => (
-            <motion.div
-              key={name}
-              whileHover={{ shadow: '0 20px 25px -5px rgb(47 142 71 / 0.1), 0 8px 10px -6px rgb(47 142 71 / 0.1)' }}
-              className="group overflow-hidden rounded-2xl border border-[#2f8e47]/10 bg-white dark:bg-[#0d1a10] transition-shadow"
-            >
-              <div className="aspect-[4/5] overflow-hidden">
-                <img
-                  src={img}
-                  alt={name}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {coords.map(({ name, role, img }) => (
+              <div key={name} className="flex flex-col items-center gap-4">
+                {/* TiltedCard image */}
+                <TiltedCard
+                  imageSrc={img}
+                  altText={name}
+                  captionText={`${name} — ${role}`}
+                  containerHeight="260px"
+                  containerWidth="100%"
+                  imageHeight="260px"
+                  imageWidth="100%"
+                  rotateAmplitude={12}
+                  scaleOnHover={1.05}
+                  showMobileWarning={false}
+                  showTooltip
+                  displayOverlayContent
+                  overlayContent={
+                    <span className="font-sc text-sm font-semibold text-white bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full">
+                      {role}
+                    </span>
+                  }
                 />
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{name}</h3>
-                <p className="text-sm font-medium text-[#2f8e47]">{role}</p>
-                <div className="mt-4 flex gap-3 text-slate-400">
-                  <span className="material-symbols-outlined cursor-pointer hover:text-[#2f8e47] transition-colors">alternate_email</span>
-                  <span className="material-symbols-outlined cursor-pointer hover:text-[#2f8e47] transition-colors">share</span>
+                {/* Info below card */}
+                <div className="w-full px-1">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-sc text-lg font-semibold text-white leading-tight">{name}</h3>
+                      <p className="font-garamond text-sm text-[#2f8e47] mt-0.5">{role}</p>
+                    </div>
+                    <div className="flex gap-3 text-[#4a6e54] mt-1">
+                      <span className="material-symbols-outlined text-xl cursor-pointer hover:text-[#4ade80] transition-colors">alternate_email</span>
+                      <span className="material-symbols-outlined text-xl cursor-pointer hover:text-[#4ade80] transition-colors">share</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
