@@ -36,7 +36,7 @@ export default function CommunityPage() {
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#2f8e47] text-white">
             <span className="material-symbols-outlined text-base">terminal</span>
           </div>
-          <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white">GFG Chapter</span>
+          <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white">GFG X RIT</span>
         </Link>
 
         {/* User badge */}

@@ -45,7 +45,7 @@ export default function Navbar({ solid = false }) {
               <img src="/images/gfg-logo.png" alt="GFG Logo" className="h-full w-full object-contain" />
             </div>
             <span className={`text-xl font-bold tracking-tight ${isTransparent ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
-              GFG Chapter
+              GFG X RIT
             </span>
           </Link>
 
