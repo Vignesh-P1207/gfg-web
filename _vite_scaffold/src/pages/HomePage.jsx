@@ -296,7 +296,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {coords.map(({ name, role, img }) => (
+            {coords.map(({ name, role, img }, i) => (
               <div key={name} className="flex flex-col items-center gap-4">
                 {/* TiltedCard image */}
                 <TiltedCard
@@ -318,11 +318,17 @@ export default function HomePage() {
                     </span>
                   }
                 />
-                {/* Info below card */}
-                <div className="w-full px-1">
+                {/* Info below card — blur-in on scroll */}
+                <motion.div
+                  className="w-full px-1"
+                  initial={{ opacity: 0, filter: 'blur(14px)', y: 8 }}
+                  whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                  viewport={{ amount: 0.6 }}
+                  transition={{ duration: 1.5, ease: 'easeOut', delay: i * 0.12 }}
+                >
                   <h3 className="font-sc text-lg font-semibold text-white leading-tight">{name}</h3>
                   <p className="font-garamond text-sm text-[#2f8e47] mt-0.5">{role}</p>
-                </div>
+                </motion.div>
               </div>
             ))}
           </div>
@@ -333,17 +339,37 @@ export default function HomePage() {
       <section className="relative bg-[#032014] py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_#2f8e4733_0%,_transparent_50%)]" />
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+
+          {/* Heading */}
+          <motion.h2
+            initial={{ opacity: 0, filter: 'blur(18px)', y: 12 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 1.5, ease: 'easeOut', delay: 0 }}
             className="serif-headline text-5xl md:text-7xl font-normal text-white mb-6"
           >
             Ready to Level Up?
           </motion.h2>
-          <p className="text-slate-300/80 text-lg mb-10 max-w-2xl mx-auto">
+
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, filter: 'blur(14px)', y: 10 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 1.5, ease: 'easeOut', delay: 0.25 }}
+            className="text-slate-300/80 text-lg mb-10 max-w-2xl mx-auto"
+          >
             Join 500+ students building careers in tech. Workshops, hackathons, mentorship — all in one community.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          </motion.p>
+
+          {/* Buttons */}
+          <motion.div
+            initial={{ opacity: 0, filter: 'blur(12px)', y: 8 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 1.5, ease: 'easeOut', delay: 0.45 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
             <Link
               to="/community"
               className="rounded-full bg-[#2f8e47] px-10 py-5 font-bold text-white hover:bg-[#267a3c] transition-all shadow-2xl shadow-[#2f8e47]/40"
@@ -356,7 +382,8 @@ export default function HomePage() {
             >
               Browse Events
             </Link>
-          </div>
+          </motion.div>
+
         </div>
       </section>
 
