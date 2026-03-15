@@ -25,6 +25,8 @@ export default function Navbar({ solid = false }) {
 
   const links = [
     { to: '/', label: 'Home' },
+    { to: '/courses', label: 'Courses' },
+    { to: '/practice', label: 'Practice' },
     { to: '/events', label: 'Events' },
     { to: '/resources', label: 'Resources' },
     { to: '/community', label: 'Community' },

@@ -317,27 +317,26 @@ export default function HomePage() {
             </button>
           </div>
         </div>
-      </section>
 
-      {/* ── Mission Modal ── */}
-      <AnimatePresence>
-        {missionOpen && (
-          <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setMissionOpen(false)}
-          >
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+        {/* ── Mission Modal ── */}
+        <AnimatePresence>
+          {missionOpen && (
             <motion.div
-              className="relative bg-[#0b1f12] border border-[#2f8e47]/30 rounded-3xl p-6 max-w-xl w-full shadow-2xl"
-              initial={{ opacity: 0, scale: 0.93, y: 24 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.93, y: 24 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              onClick={e => e.stopPropagation()}
+              className="absolute inset-0 z-[100] flex items-start justify-center p-4 pt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMissionOpen(false)}
             >
+              <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
+              <motion.div
+                className="relative bg-[#0b1f12] border border-[#2f8e47]/30 rounded-3xl p-6 max-w-xl w-full shadow-2xl mt-8"
+                initial={{ opacity: 0, scale: 0.93, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.93, y: -20 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                onClick={e => e.stopPropagation()}
+              >
               <button
                 onClick={() => setMissionOpen(false)}
                 className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
@@ -393,6 +392,7 @@ export default function HomePage() {
           </motion.div>
         )}
       </AnimatePresence>
+      </section>
 
       {/* ── Scrubbed About (MoMoney Style) ── */}
       <ScrubbedAbout />

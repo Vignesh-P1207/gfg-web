@@ -9,6 +9,10 @@ import HomePage from './pages/HomePage'
 import EventsPage from './pages/EventsPage'
 import ResourcesPage from './pages/ResourcesPage'
 import CommunityPage from './pages/CommunityPage'
+import LeaderboardPage from './pages/LeaderboardPage'
+import SettingsPage from './pages/SettingsPage'
+import CoursesPage from './pages/CoursesPage'
+import PracticePage from './pages/PracticePage'
 import RoadmapPage from './pages/RoadmapPage'
 import AuthPage from './pages/AuthPage'
 
@@ -51,12 +55,20 @@ export default function App() {
           <Route path="/" element={<HomeWithOverlay />} />
           <Route path="/events" element={<><Navbar solid /><EventsPage /></>} />
           <Route path="/resources" element={<><Navbar solid /><ResourcesPage /></>} />
+          <Route path="/courses" element={<><Navbar solid /><CoursesPage /></>} />
+          <Route path="/practice" element={<><Navbar solid /><PracticePage /></>} />
           <Route path="/workshops" element={<><Navbar solid /><RoadmapPage /></>} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/community" element={
             <ProtectedRoute>
               <><Navbar solid /><CommunityPage /></>
             </ProtectedRoute>
+          } />
+          <Route path="/leaderboard" element={
+            <ProtectedRoute><Navbar solid /><LeaderboardPage /></ProtectedRoute>
+          } />
+          <Route path="/settings" element={
+            <ProtectedRoute><Navbar solid /><SettingsPage /></ProtectedRoute>
           } />
         </Routes>
       </AuthProvider>

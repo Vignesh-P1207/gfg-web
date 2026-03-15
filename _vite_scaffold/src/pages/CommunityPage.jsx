@@ -6,8 +6,8 @@ const navItems = [
   { icon: 'group', label: 'Community', to: '#' },
   { icon: 'calendar_month', label: 'Events', to: '/events' },
   { icon: 'menu_book', label: 'Courses', to: '/resources' },
-  { icon: 'leaderboard', label: 'Leaderboard', to: '#' },
-  { icon: 'settings', label: 'Settings', to: '#' },
+  { icon: 'leaderboard', label: 'Leaderboard', to: '/leaderboard' },
+  { icon: 'settings', label: 'Settings', to: '/settings' },
 ]
 
 const leaderboard = [
@@ -15,7 +15,7 @@ const leaderboard = [
   { rank: '🥈', initials: 'PM', name: 'Priya Mehta', xp: 2980, pct: 92, color: '#bdbdbd' },
   { rank: '🥉', initials: 'RK', name: 'Rahul Kumar', xp: 2610, pct: 80, color: '#cd7f32' },
   { rank: '4', initials: 'NS', name: 'Neha Sharma', xp: 2310, pct: 71, color: '#2f8e47' },
-  { rank: '7', initials: 'SJ', name: 'Sandeep Jain', xp: 1840, pct: 57, color: '#2f8e47', me: true },
+  { rank: '7', initials: 'V', name: 'Vignesh', xp: 1840, pct: 57, color: '#2f8e47', me: true },
 ]
 
 const blogs = [
@@ -42,10 +42,10 @@ export default function CommunityPage() {
         {/* User badge */}
         <div className="flex items-center gap-3 p-3 rounded-xl bg-[#2f8e47]/10 border border-[#2f8e47]/20 mb-6">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#2f8e47] to-[#032014] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-            SJ
+            V
           </div>
           <div className="min-w-0">
-            <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate">Sandeep Jain</h4>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate">Vignesh</h4>
             <p className="text-xs font-medium text-[#2f8e47] truncate">Expert Explorer · Lv.12</p>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function CommunityPage() {
               <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#2f8e47] rounded-full" />
             </div>
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#2f8e47] to-[#032014] flex items-center justify-center text-white text-xs font-bold cursor-pointer">
-              SJ
+              V
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function CommunityPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#2f8e47]/20 rounded-full -translate-y-1/2 translate-x-1/4 blur-2xl" />
             <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div className="flex-1">
-                <h2 className="text-xl font-bold mb-1">Welcome back, Sandeep! 👋</h2>
+                <h2 className="text-xl font-bold mb-1">Welcome back, Vignesh! 👋</h2>
                 <p className="text-slate-300/80 text-sm mb-5">
                   You've reached Level 12 Explorer status. Earn 250 more XP to unlock Level 13 and get the "Algorithm Guru" title!
                 </p>
