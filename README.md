@@ -1,5 +1,12 @@
 # GFG X RIT - Web Application
 
+## 🌐 Live Deployment (Vercel)
+
+The website is deployed on **Vercel** and can be accessed here:
+- **Live URL:** https://gfg-web-rho.vercel.app/
+
+> **Recommended:** Open the site on a **PC / laptop (desktop view)** for the best experience.
+
 This repository contains the source code for the official website of the GFG Student Chapter at RIT. Our platform is built using **React**, **Vite**, **Tailwind CSS V4**, and **Framer Motion** for elegant animations.
 
 ## 🚀 Running the Project Locally
@@ -46,4 +53,4 @@ The terminal will display a local URL (usually `http://localhost:5173/`). `Ctrl+
 - Build Tool: **Vite 6**
 - Styling: **Tailwind CSS v4** & Vanilla CSS
 - Animations: **Framer Motion**
-- Routing: **React Router DOM v7**
+- Routing: **React Router DOM v7
