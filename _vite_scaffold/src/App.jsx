@@ -39,7 +39,7 @@ function HomeWithOverlay() {
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()
-  return user ? children : <Navigate to="/auth" replace />
+  return user ? <>{children}</> : <Navigate to="/auth" replace />
 }
 
 export default function App() {
@@ -54,7 +54,9 @@ export default function App() {
           <Route path="/workshops" element={<><Navbar solid /><RoadmapPage /></>} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/community" element={
-            <ProtectedRoute><Navbar solid /><CommunityPage /></ProtectedRoute>
+            <ProtectedRoute>
+              <><Navbar solid /><CommunityPage /></>
+            </ProtectedRoute>
           } />
         </Routes>
       </AuthProvider>
