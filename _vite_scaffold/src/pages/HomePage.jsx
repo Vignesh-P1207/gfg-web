@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useMotionValueEvent, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValueEvent, useScroll, useTransform, useSpring } from 'framer-motion'
 import Footer from '../components/Footer'
 import SpotlightCard from '../components/SpotlightCard'
 import TiltedCard from '../components/TiltedCard'
@@ -49,9 +49,9 @@ const coords = [
 ]
 
 const objectives = [
-  { icon: 'school', title: 'Skill Development', desc: 'Regular workshops on DSA, Web Dev, and AI/ML to stay ahead of the curve.', link: 'Explore Workshops' },
-  { icon: 'groups', title: 'Networking', desc: 'Connect with alumni and industry professionals through guest lectures and meetups.', link: 'Meet the Community' },
-  { icon: 'workspace_premium', title: 'Competitions', desc: 'Monthly hackathons and coding contests to test and improve problem-solving skills.', link: 'View Events' },
+  { icon: 'school', title: 'Skill Development', desc: 'Regular workshops on DSA, Web Dev, and AI/ML to stay ahead of the curve.', link: 'Explore Workshops', href: '/workshops' },
+  { icon: 'groups', title: 'Networking', desc: 'Connect with alumni and industry professionals through guest lectures and meetups.', link: 'Meet the Community', href: '/community' },
+  { icon: 'workspace_premium', title: 'Competitions', desc: 'Monthly hackathons and coding contests to test and improve problem-solving skills.', link: 'View Events', href: '/events' },
 ]
 
 // Custom images for the scatter gallery (generated earlier)
@@ -184,7 +184,95 @@ function ScatterImage({ img, progress }) {
   )
 }
 
+// Floating icons for hero background
+const floatingItems = [
+  // books
+  { icon: 'menu_book',    x: '8%',  y: '15%', size: 38, dur: 18, delay: 0,    rot: 15  },
+  { icon: 'menu_book',    x: '82%', y: '70%', size: 28, dur: 22, delay: 3,    rot: -20 },
+  { icon: 'menu_book',    x: '55%', y: '10%', size: 32, dur: 20, delay: 7,    rot: 8   },
+  { icon: 'auto_stories', x: '20%', y: '75%', size: 34, dur: 25, delay: 1.5,  rot: -12 },
+  { icon: 'auto_stories', x: '70%', y: '25%', size: 26, dur: 19, delay: 5,    rot: 25  },
+  // pens
+  { icon: 'edit',         x: '35%', y: '80%', size: 30, dur: 16, delay: 2,    rot: -30 },
+  { icon: 'edit',         x: '90%', y: '40%', size: 24, dur: 21, delay: 8,    rot: 18  },
+  { icon: 'draw',         x: '5%',  y: '55%', size: 28, dur: 23, delay: 4,    rot: -8  },
+  { icon: 'draw',         x: '60%', y: '88%', size: 22, dur: 17, delay: 6,    rot: 35  },
+  // pencils
+  { icon: 'stylus',       x: '45%', y: '5%',  size: 32, dur: 24, delay: 0.5,  rot: -22 },
+  { icon: 'stylus',       x: '15%', y: '40%', size: 26, dur: 20, delay: 9,    rot: 12  },
+  { icon: 'border_color', x: '75%', y: '55%', size: 30, dur: 18, delay: 3.5,  rot: -15 },
+  { icon: 'border_color', x: '92%', y: '12%', size: 24, dur: 26, delay: 11,   rot: 28  },
+]
+
+function FloatingBg() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
+      {floatingItems.map((item, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            left: item.x,
+            top: item.y,
+            animation: `floatIcon ${item.dur}s ease-in-out ${item.delay}s infinite alternate`,
+          }}
+        >
+          <span
+            className="material-symbols-outlined select-none"
+            style={{
+              fontSize: item.size,
+              color: 'rgba(163, 230, 183, 0.18)',
+              display: 'block',
+              animation: `spinIcon ${item.dur * 1.4}s linear ${item.delay}s infinite`,
+              transform: `rotate(${item.rot}deg)`,
+            }}
+          >
+            {item.icon}
+          </span>
+        </div>
+      ))}
+      <style>{`
+        @keyframes floatIcon {
+          from { transform: translateY(0px) translateX(0px); }
+          to   { transform: translateY(-28px) translateX(10px); }
+        }
+        @keyframes spinIcon {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  )
+}
+
+const ROLES = ['Frontend Dev', 'Backend Dev', 'ML Engineer', 'DSA Lead', 'DevOps', 'UI/UX Designer', 'Blockchain Dev', 'Cloud Architect', 'Mobile Dev', 'Cybersecurity']
+const COLORS = ['#2f8e47','#3b82f6','#f97316','#8b5cf6','#ef4444','#eab308','#06b6d4','#ec4899','#14b8a6','#a855f7']
+const ALL_MEMBERS = [
+  'Aarav Sharma','Aditi Verma','Akash Patel','Ananya Singh','Arjun Nair',
+  'Bhavya Reddy','Chirag Mehta','Deepika Iyer','Dhruv Gupta','Divya Pillai',
+  'Eshan Joshi','Farhan Khan','Gayatri Rao','Harsh Agarwal','Ishaan Malhotra',
+  'Jaya Krishnan','Kabir Saxena','Kavya Menon','Kiran Desai','Kunal Bose',
+  'Lakshmi Nair','Manav Tiwari','Meera Choudhary','Mihir Shah','Mira Kapoor',
+  'Nandini Shetty','Nikhil Pandey','Nisha Bajaj','Om Prakash','Pallavi Jain',
+  'Parth Trivedi','Pooja Mishra','Pranav Kulkarni','Priya Subramaniam','Rahul Dubey',
+  'Riya Chatterjee','Rohan Banerjee','Rohit Yadav','Ruchi Agarwal','Sachin Patil',
+  'Sahil Mathur','Sakshi Garg','Sameer Qureshi','Sanvi Hegde','Saurabh Tiwari',
+  'Shivani Rajan','Shreya Nambiar','Siddharth Kaur','Simran Oberoi','Sneha Pillai',
+  'Soham Dey','Srishti Bhatt','Suraj Venkat','Swati Dixit','Tanvi Ghosh',
+  'Tarun Ahuja','Uday Shankar','Urvashi Pande','Vaibhav Sinha','Vandana Murthy',
+  'Varun Chandra','Vidya Prasad','Vikram Sethi','Vinay Nambiar','Vishal Rawat',
+  'Yash Goyal','Yashasvi Rao','Zara Ahmed','Aditya Kumar','Alok Misra',
+  'Amrita Bose','Ankit Verma','Ankita Sharma','Arnav Joshi','Arun Pillai',
+  'Ashish Gupta','Avni Mehta','Ayush Patel','Bharat Singh','Chetan Reddy',
+  'Disha Iyer','Gaurav Nair','Harini Krishnan','Hemant Saxena','Isha Menon',
+  'Jatin Desai','Kartik Bose','Keerthi Nair','Kriti Tiwari','Lokesh Shah',
+  'Madhuri Kapoor','Manisha Shetty','Mohit Pandey','Namrata Bajaj','Naveen Prakash',
+].map((name, i) => ({ name, role: ROLES[i % ROLES.length], color: COLORS[i % COLORS.length] }))
+
 export default function HomePage() {
+  const [missionOpen, setMissionOpen] = useState(false)
+  const [membersOpen, setMembersOpen] = useState(false)
+
   return (
     <div className="bg-[#f6f8f6] dark:bg-[#141e16] text-slate-900 dark:text-slate-100">
 
@@ -198,6 +286,7 @@ export default function HomePage() {
             backgroundSize: '50px 50px',
           }}
         />
+        <FloatingBg />
         <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
           <h1 className="serif-headline text-6xl font-normal leading-[1.1] tracking-tight md:text-8xl lg:text-9xl mb-10">
             Building <br />
@@ -214,18 +303,96 @@ export default function HomePage() {
           </div>
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/events"
+              to="/workshops"
               className="group flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-[#032014] hover:bg-slate-100 transition-all shadow-xl"
             >
               Explore Workshops
               <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
             </Link>
-            <button className="rounded-full border border-white/20 bg-transparent px-8 py-4 font-bold text-white backdrop-blur-sm hover:bg-white/10 transition-colors">
+            <button
+              onClick={() => setMissionOpen(true)}
+              className="rounded-full border border-white/20 bg-transparent px-8 py-4 font-bold text-white backdrop-blur-sm hover:bg-white/10 transition-colors"
+            >
               Our Mission
             </button>
           </div>
         </div>
       </section>
+
+      {/* ── Mission Modal ── */}
+      <AnimatePresence>
+        {missionOpen && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMissionOpen(false)}
+          >
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+            <motion.div
+              className="relative bg-[#0b1f12] border border-[#2f8e47]/30 rounded-3xl p-6 max-w-xl w-full shadow-2xl"
+              initial={{ opacity: 0, scale: 0.93, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.93, y: 24 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setMissionOpen(false)}
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+              >
+                <span className="material-symbols-outlined text-white text-base">close</span>
+              </button>
+
+              <div className="flex items-center gap-2 mb-3">
+                <span className="material-symbols-outlined text-[#2f8e47] text-base">flag</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#a3e6b7]">Our Mission</span>
+              </div>
+
+              <h2 className="serif-headline text-2xl md:text-3xl font-normal text-white leading-snug mb-2">
+                Empowering the Next Generation of Tech Talent
+              </h2>
+
+              <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                Bridging classroom learning and industry demands — giving every student the skills, mentorship, and community to land their dream tech role.
+              </p>
+
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                {[
+                  { icon: 'school',        title: 'Industry-Ready Skills',      desc: 'Roadmaps built around what top companies hire for.' },
+                  { icon: 'work',          title: 'Job Readiness',              desc: 'Mock interviews, resume workshops & placement drives.' },
+                  { icon: 'groups',        title: 'Peer-Driven Growth',         desc: 'Hackathons, study groups & collaborative projects.' },
+                  { icon: 'rocket_launch', title: 'Future-Proof Careers',       desc: 'AI, Blockchain, Cloud — always ahead of the curve.' },
+                ].map(item => (
+                  <div key={item.title} className="flex gap-2 p-3 rounded-xl bg-white/5 border border-white/10">
+                    <span className="material-symbols-outlined text-[#2f8e47] text-lg flex-shrink-0">{item.icon}</span>
+                    <div>
+                      <h4 className="font-bold text-white text-xs mb-0.5">{item.title}</h4>
+                      <p className="text-slate-400 text-xs leading-snug">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-slate-400 italic text-xs border-l-2 border-[#2f8e47] pl-3 mb-4">
+                "We don't just teach code — we build engineers who think, create, and lead."
+              </p>
+
+              <div className="flex gap-2">
+                <Link to="/workshops" onClick={() => setMissionOpen(false)}
+                  className="flex-1 text-center rounded-full bg-[#2f8e47] text-white font-bold px-4 py-2.5 text-xs hover:bg-[#267a3c] transition-colors">
+                  Explore Roadmaps
+                </Link>
+                <Link to="/community" onClick={() => setMissionOpen(false)}
+                  className="flex-1 text-center rounded-full border border-white/20 text-white font-bold px-4 py-2.5 text-xs hover:bg-white/10 transition-colors">
+                  Join Chapter
+                </Link>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Scrubbed About (MoMoney Style) ── */}
       <ScrubbedAbout />
@@ -240,7 +407,7 @@ export default function HomePage() {
           </div>
           {/* Cards */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {objectives.map(({ icon, title, desc, link }) => (
+            {objectives.map(({ icon, title, desc, link, href }) => (
               <SpotlightCard
                 key={title}
                 spotlightColor="rgba(47, 142, 71, 0.18)"
@@ -253,9 +420,9 @@ export default function HomePage() {
                 <h3 className="font-sc text-2xl font-semibold text-white mb-3 leading-snug">{title}</h3>
                 <p className="font-garamond text-[#8aab92] leading-relaxed mb-8">{desc}</p>
                 {/* Learn more link */}
-                <button className="font-garamond italic text-base text-[#4ade80]/80 underline underline-offset-4 decoration-[#2f8e47]/50 hover:text-[#4ade80] hover:decoration-[#4ade80] transition-all">
+                <Link to={href} className="font-garamond italic text-base text-[#4ade80]/80 underline underline-offset-4 decoration-[#2f8e47]/50 hover:text-[#4ade80] hover:decoration-[#4ade80] transition-all">
                   {link}
-                </button>
+                </Link>
               </SpotlightCard>
             ))}
           </div>
@@ -270,7 +437,9 @@ export default function HomePage() {
               <p className="font-sc text-xs tracking-[0.3em] text-[#2f8e47] mb-2">The Team</p>
               <h2 className="font-sc text-4xl font-semibold text-white">Club Coordinators</h2>
             </div>
-            <button className="flex items-center gap-2 font-garamond italic text-[#4ade80]/80 hover:text-[#4ade80] underline underline-offset-4 decoration-[#2f8e47]/50 transition-all">
+            <button
+              onClick={() => setMembersOpen(true)}
+              className="flex items-center gap-2 font-garamond italic text-[#4ade80]/80 hover:text-[#4ade80] underline underline-offset-4 decoration-[#2f8e47]/50 transition-all">
               View All Members <span className="material-symbols-outlined text-base not-italic">north_east</span>
             </button>
           </div>
@@ -366,6 +535,58 @@ export default function HomePage() {
 
         </div>
       </section>
+
+      {/* ── All Members Modal ── */}
+      <AnimatePresence>
+        {membersOpen && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMembersOpen(false)}
+          >
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+            <motion.div
+              className="relative bg-[#0b1f12] border border-[#2f8e47]/30 rounded-3xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl"
+              initial={{ opacity: 0, scale: 0.93, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.93, y: 24 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* header */}
+              <div className="flex items-center justify-between px-8 py-5 border-b border-white/10 flex-shrink-0">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#a3e6b7]">The Team</p>
+                  <h2 className="font-sc text-2xl text-white mt-0.5">All Members <span className="text-[#2f8e47]">· 100</span></h2>
+                </div>
+                <button
+                  onClick={() => setMembersOpen(false)}
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                >
+                  <span className="material-symbols-outlined text-white text-lg">close</span>
+                </button>
+              </div>
+              {/* scrollable grid */}
+              <div className="overflow-y-auto p-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                {ALL_MEMBERS.map((m, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#2f8e47]/40 transition-colors">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0"
+                      style={{ background: m.color }}>
+                      {m.name.split(' ').map(n => n[0]).join('').slice(0,2)}
+                    </div>
+                    <div className="text-center">
+                      <p className="text-white text-xs font-semibold leading-tight">{m.name}</p>
+                      <p className="text-[#2f8e47] text-[10px] mt-0.5">{m.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>

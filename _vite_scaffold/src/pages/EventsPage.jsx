@@ -6,11 +6,11 @@ const FILTERS = ['All', 'Workshop', 'Hackathon', 'Seminar']
 
 const events = [
   { type: 'Workshop', color: 'bg-orange-500', icon: 'security', title: 'Advanced Web Pentesting', date: 'Dec 24, 2024', time: '10:00 AM', seats: 120, tags: ['Security', 'Web Dev'], gradient: 'from-slate-900 to-slate-800' },
-  { type: 'Hackathon', color: 'bg-[#2f8e47]', icon: 'bolt', title: 'Code Sprint 2024', date: 'Jan 5–6, 2025', time: '9:00 AM', seats: 240, tags: ['$10k Prize', '48h'], gradient: 'from-[#032014] to-[#0d3b1e]', featured: true },
+  { type: 'Hackathon', color: 'bg-[#2f8e47]', icon: 'bolt', title: 'Code Sprint 2024', date: 'Jan 5-6, 2025', time: '9:00 AM', seats: 240, tags: ['$10k Prize', '48h'], gradient: 'from-[#032014] to-[#0d3b1e]', featured: true },
   { type: 'Seminar', color: 'bg-blue-600', icon: 'smart_toy', title: 'AI Evolution Seminar', date: 'Jan 15, 2025', time: '2:00 PM', seats: 80, tags: ['AI/ML', 'Research'], gradient: 'from-slate-900 to-blue-950' },
   { type: 'Workshop', color: 'bg-purple-600', icon: 'account_tree', title: 'DSA Mastery Workshop', date: 'Jan 22, 2025', time: '11:00 AM', seats: 60, tags: ['DSA', 'Placement'], gradient: 'from-purple-950 to-slate-900' },
   { type: 'Seminar', color: 'bg-blue-600', icon: 'cloud', title: 'Cloud & DevOps Bootcamp', date: 'Feb 1, 2025', time: '3:00 PM', seats: 90, tags: ['Cloud', 'DevOps'], gradient: 'from-slate-900 to-green-950' },
-  { type: 'Hackathon', color: 'bg-orange-500', icon: 'developer_mode', title: 'Open Source Hackfest', date: 'Feb 14–15, 2025', time: '9:00 AM', seats: 150, tags: ['Open Source'], gradient: 'from-red-950 to-slate-900' },
+  { type: 'Hackathon', color: 'bg-orange-500', icon: 'developer_mode', title: 'Open Source Hackfest', date: 'Feb 14-15, 2025', time: '9:00 AM', seats: 150, tags: ['Open Source'], gradient: 'from-red-950 to-slate-900' },
 ]
 
 const announcements = [

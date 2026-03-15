@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 export default function Navbar({ solid = false }) {
   const [scrolled, setScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const { user, logout } = useAuth()
 
   useEffect(() => {
     const onScroll = () => {
@@ -84,12 +87,31 @@ export default function Navbar({ solid = false }) {
                 type="text"
               />
             </div>
-            <Link
-              to="/community"
-              className="rounded-lg bg-[#2f8e47] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#2f8e47]/20 hover:bg-[#267a3c] transition-all"
-            >
-              Join Club
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 rounded-full bg-[#2f8e47]/15 border border-[#2f8e47]/30 px-3 py-1.5">
+                  <div className="w-6 h-6 rounded-full bg-[#2f8e47] flex items-center justify-center text-white text-xs font-bold">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <span className={`text-sm font-semibold ${isTransparent ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
+                    {user.name.split(' ')[0]}
+                  </span>
+                </div>
+                <button
+                  onClick={() => { logout(); navigate('/') }}
+                  className="rounded-lg border border-red-500/30 px-4 py-2 text-xs font-bold text-red-400 hover:bg-red-500/10 transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/auth"
+                className="rounded-lg bg-[#2f8e47] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#2f8e47]/20 hover:bg-[#267a3c] transition-all"
+              >
+                Join Club
+              </Link>
+            )}
           </div>
 
           {/* Hamburger */}
@@ -115,13 +137,22 @@ export default function Navbar({ solid = false }) {
                 {label}
               </Link>
             ))}
-            <Link
-              to="/community"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-lg bg-[#2f8e47] px-5 py-2.5 text-sm font-bold text-white text-center"
-            >
-              Join Club
-            </Link>
+            {user ? (
+              <button
+                onClick={() => { logout(); navigate('/'); setMenuOpen(false) }}
+                className="mt-2 rounded-lg border border-red-500/30 px-5 py-2.5 text-sm font-bold text-red-400 text-center"
+              >
+                Logout ({user.name.split(' ')[0]})
+              </button>
+            ) : (
+              <Link
+                to="/auth"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 rounded-lg bg-[#2f8e47] px-5 py-2.5 text-sm font-bold text-white text-center"
+              >
+                Join Club
+              </Link>
+            )}
           </div>
         )}
       </header>
