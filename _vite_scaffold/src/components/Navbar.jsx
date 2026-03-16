@@ -30,6 +30,7 @@ export default function Navbar({ solid = false }) {
     { to: '/events', label: 'Events' },
     { to: '/resources', label: 'Resources' },
     { to: '/community', label: 'Community' },
+    { to: '/game', label: 'DSA Racer' },
   ]
 
   return (

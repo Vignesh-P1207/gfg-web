@@ -13,6 +13,8 @@ import LeaderboardPage from './pages/LeaderboardPage'
 import SettingsPage from './pages/SettingsPage'
 import CoursesPage from './pages/CoursesPage'
 import PracticePage from './pages/PracticePage'
+import ProblemSolverPage from './pages/ProblemSolverPage'
+import DSARacerPage from './pages/DSARacerPage'
 import RoadmapPage from './pages/RoadmapPage'
 import AuthPage from './pages/AuthPage'
 
@@ -57,6 +59,8 @@ export default function App() {
           <Route path="/resources" element={<><Navbar solid /><ResourcesPage /></>} />
           <Route path="/courses" element={<><Navbar solid /><CoursesPage /></>} />
           <Route path="/practice" element={<><Navbar solid /><PracticePage /></>} />
+          <Route path="/practice/:id" element={<ProblemSolverPage />} />
+          <Route path="/game" element={<DSARacerPage />} />
           <Route path="/workshops" element={<><Navbar solid /><RoadmapPage /></>} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/community" element={

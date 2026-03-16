@@ -31,6 +31,11 @@ const COURSES = [
     ],
     tags: ['Placement Prep', 'Interview Ready', 'Certificate'],
     desc: 'Master every data structure and algorithm with 500+ practice problems, video explanations, and mock interviews. Built for FAANG preparation.',
+    externalLinks: [
+      { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/courses/dsa-self-paced', icon: 'school', color: '#2f8d46' },
+      { name: 'LeetCode', url: 'https://leetcode.com/problemset/', icon: 'code', color: '#ffa116' },
+      { name: 'HackerRank', url: 'https://www.hackerrank.com/domains/data-structures', icon: 'terminal', color: '#1ba94c' },
+    ],
   },
   {
     id: 'react-fullstack',
@@ -57,6 +62,11 @@ const COURSES = [
     ],
     tags: ['Project Based', 'MERN Stack'],
     desc: 'End-to-end web development with React, Node.js, Express, and MongoDB. Build 5 real-world projects including an e-commerce platform.',
+    externalLinks: [
+      { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/courses/react-js', icon: 'school', color: '#2f8d46' },
+      { name: 'freeCodeCamp', url: 'https://www.freecodecamp.org/learn/front-end-development-libraries/', icon: 'volunteer_activism', color: '#0a0a23' },
+      { name: 'MDN Web Docs', url: 'https://developer.mozilla.org/en-US/docs/Learn', icon: 'menu_book', color: '#83d0f2' },
+    ],
   },
   {
     id: 'ai-ml-deep',
@@ -83,6 +93,11 @@ const COURSES = [
     ],
     tags: ['TensorFlow', 'Research', 'Projects'],
     desc: 'From linear regression to transformers. Implement ML models from scratch, deploy them, and build a portfolio of AI projects.',
+    externalLinks: [
+      { name: 'Coursera ML', url: 'https://www.coursera.org/specializations/machine-learning-introduction', icon: 'school', color: '#0056d2' },
+      { name: 'Kaggle', url: 'https://www.kaggle.com/learn', icon: 'analytics', color: '#20beff' },
+      { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/courses/machine-learning', icon: 'school', color: '#2f8d46' },
+    ],
   },
   {
     id: 'system-design',
@@ -108,6 +123,11 @@ const COURSES = [
     ],
     tags: ['FAANG Prep', 'Case Studies'],
     desc: 'Design scalable systems like URL shorteners, chat apps, and social media feeds. Includes mock interviews with FAANG engineers.',
+    externalLinks: [
+      { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/courses/system-design', icon: 'school', color: '#2f8d46' },
+      { name: 'System Design Primer', url: 'https://github.com/donnemartin/system-design-primer', icon: 'hub', color: '#333' },
+      { name: 'Gaurav Sen (YT)', url: 'https://www.youtube.com/@gaborsen', icon: 'play_circle', color: '#ff0000' },
+    ],
   },
   {
     id: 'devops-cloud',
@@ -133,6 +153,11 @@ const COURSES = [
     ],
     tags: ['AWS', 'Kubernetes', 'Certification'],
     desc: 'Build, deploy, and manage cloud infrastructure. Covers Docker, Kubernetes, Terraform, CI/CD, and AWS Solutions Architect prep.',
+    externalLinks: [
+      { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/courses/devops', icon: 'school', color: '#2f8d46' },
+      { name: 'Docker Docs', url: 'https://docs.docker.com/get-started/', icon: 'deployed_code', color: '#2496ed' },
+      { name: 'AWS Training', url: 'https://explore.skillbuilder.aws/learn', icon: 'cloud', color: '#ff9900' },
+    ],
   },
   {
     id: 'flutter-mobile',
@@ -158,12 +183,27 @@ const COURSES = [
     ],
     tags: ['iOS', 'Android', 'Firebase'],
     desc: 'Build beautiful, performant iOS and Android apps with Flutter. Includes Firebase integration, state management, and app store publishing.',
+    externalLinks: [
+      { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/courses/flutter', icon: 'school', color: '#2f8d46' },
+      { name: 'Flutter.dev', url: 'https://flutter.dev/learn', icon: 'phone_android', color: '#02569b' },
+      { name: 'Dart.dev', url: 'https://dart.dev/tutorials', icon: 'code', color: '#0175c2' },
+    ],
   },
+]
+
+const EXTERNAL_PLATFORMS = [
+  { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/', desc: 'Comprehensive DSA courses, tutorials, and practice problems', color: '#2f8d46', icon: 'school' },
+  { name: 'LeetCode', url: 'https://leetcode.com/', desc: 'Coding challenges for interview prep with contest rankings', color: '#ffa116', icon: 'code' },
+  { name: 'HackerRank', url: 'https://www.hackerrank.com/', desc: 'Skill-based coding tests and developer certifications', color: '#1ba94c', icon: 'terminal' },
+  { name: 'Coursera', url: 'https://www.coursera.org/', desc: 'University-level courses from Stanford, MIT, and more', color: '#0056d2', icon: 'menu_book' },
+  { name: 'freeCodeCamp', url: 'https://www.freecodecamp.org/', desc: 'Free full-stack web development curriculum', color: '#0a0a23', icon: 'volunteer_activism' },
+  { name: 'Kaggle', url: 'https://www.kaggle.com/', desc: 'Data science competitions and machine learning datasets', color: '#20beff', icon: 'analytics' },
 ]
 
 export default function CoursesPage() {
   const [active, setActive] = useState('All')
   const [expandedCourse, setExpandedCourse] = useState(null)
+  const [showLinks, setShowLinks] = useState(null)
 
   const filtered = COURSES.filter(c => active === 'All' || c.category === active)
 
@@ -271,14 +311,60 @@ export default function CoursesPage() {
                   </div>
                 )}
 
-                {/* CTA */}
-                <div className="flex gap-2 mt-auto pt-3">
-                  <button className="flex-1 rounded-full bg-[#2f8e47] text-white text-xs font-bold py-2.5 hover:bg-[#267a3c] transition-colors">
-                    Enroll Now — Free
+                {/* CTA Buttons - External Links */}
+                <div className="flex flex-col gap-2 mt-auto pt-3">
+                  <a
+                    href={course.externalLinks[0].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 rounded-full bg-[#2f8e47] text-white text-xs font-bold py-2.5 hover:bg-[#267a3c] transition-colors text-center flex items-center justify-center gap-2"
+                  >
+                    <span className="material-symbols-outlined text-sm">open_in_new</span>
+                    Start Learning on {course.externalLinks[0].name}
+                  </a>
+                  <div className="flex gap-2">
+                    {course.externalLinks.slice(1).map(link => (
+                      <a
+                        key={link.name}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 rounded-full border border-slate-200 dark:border-white/10 text-xs font-bold py-2 px-3 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-slate-600 dark:text-slate-300 text-center flex items-center justify-center gap-1.5"
+                        title={`Open ${link.name}`}
+                      >
+                        <span className="material-symbols-outlined text-sm" style={{ color: link.color }}>{link.icon}</span>
+                        {link.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* All External Links Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => setShowLinks(showLinks === course.id ? null : course.id)}
+                    className="text-[10px] font-bold text-slate-400 hover:text-[#2f8e47] transition-colors flex items-center gap-1 w-full justify-center"
+                  >
+                    <span className="material-symbols-outlined text-sm">{showLinks === course.id ? 'expand_less' : 'link'}</span>
+                    {showLinks === course.id ? 'Hide' : 'View All'} Learning Resources
                   </button>
-                  <Link to="/workshops" className="rounded-full border border-slate-200 dark:border-white/10 text-xs font-bold py-2.5 px-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-slate-600 dark:text-slate-300">
-                    Preview
-                  </Link>
+                  {showLinks === course.id && (
+                    <div className="mt-2 bg-slate-50 dark:bg-white/5 rounded-xl p-3 border border-slate-100 dark:border-white/5 flex flex-col gap-1.5">
+                      {course.externalLinks.map(link => (
+                        <a
+                          key={link.name}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white dark:hover:bg-white/5 transition-colors group/link"
+                        >
+                          <span className="material-symbols-outlined text-base" style={{ color: link.color }}>{link.icon}</span>
+                          <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex-1">{link.name}</span>
+                          <span className="material-symbols-outlined text-sm text-slate-300 group-hover/link:text-[#2f8e47] transition-colors">arrow_outward</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -290,6 +376,39 @@ export default function CoursesPage() {
             <p>No courses found in "{active}" category.</p>
           </div>
         )}
+      </section>
+
+      {/* External Platforms Section */}
+      <section className="bg-white dark:bg-[#0d170e] py-16 px-6 border-y border-slate-100 dark:border-white/5">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center mb-12">
+            <p className="text-sm font-bold uppercase tracking-widest text-[#2f8e47] mb-2">Learn Anywhere</p>
+            <h2 className="serif-headline text-3xl md:text-4xl font-normal mb-4">Explore Top Learning Platforms</h2>
+            <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">We curate the best courses from leading platforms so you never miss a learning opportunity.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {EXTERNAL_PLATFORMS.map(plat => (
+              <a
+                key={plat.name}
+                href={plat.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-4 p-5 rounded-2xl border border-slate-100 dark:border-white/5 hover:border-[#2f8e47]/30 hover:shadow-lg hover:-translate-y-0.5 transition-all bg-slate-50/50 dark:bg-white/[0.02]"
+              >
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${plat.color}15` }}>
+                  <span className="material-symbols-outlined text-2xl" style={{ color: plat.color }}>{plat.icon}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-bold text-sm text-slate-900 dark:text-white">{plat.name}</h4>
+                    <span className="material-symbols-outlined text-sm text-slate-300 group-hover:text-[#2f8e47] transition-colors">arrow_outward</span>
+                  </div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">{plat.desc}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Why our courses + DSA Practice CTA */}
@@ -319,8 +438,8 @@ export default function CoursesPage() {
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
             <div className="flex-1 relative z-10">
               <p className="text-sm font-bold uppercase tracking-widest text-[#a3e6b7] mb-2">New Feature</p>
-              <h3 className="text-3xl font-bold mb-3">DSA Practice Arena</h3>
-              <p className="text-white/70 max-w-lg">Solve 200+ curated LeetCode-style problems organized by topic. Interactive code editor, test cases, and difficulty ratings.</p>
+              <h3 className="text-3xl font-bold mb-3">Interactive Code Runner</h3>
+              <p className="text-white/70 max-w-lg">Solve 200+ curated LeetCode-style problems with our built-in interactive compiler. Write, run, and test your code in real-time.</p>
             </div>
             <Link to="/practice" className="relative z-10 rounded-full bg-white text-[#032014] font-bold px-8 py-4 hover:bg-slate-100 transition-colors shadow-xl whitespace-nowrap flex items-center gap-2">
               <span className="material-symbols-outlined">code</span> Start Practicing
