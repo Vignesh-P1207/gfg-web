@@ -413,8 +413,8 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <br/>
 
-[![GitHub stars](https://img.shields.io/github/stars/your-username/gfg-web?style=social)](https://github.com/Wicky696969/gfg-web)
+[![GitHub stars](https://img.shields.io/github/stars/Wicky696969/gfg-web?style=social)](https://github.com/Wicky696969/gfg-web)
 &nbsp;
-[![GitHub forks](https://img.shields.io/github/forks/your-username/gfg-web?style=social)](https://github.com/Wicky696969/gfg-web/fork)
+[![GitHub forks](https://img.shields.io/github/forks/Wicky696969/gfg-web?style=social)](https://github.com/Wicky696969/gfg-web/fork)
 
 </div>
