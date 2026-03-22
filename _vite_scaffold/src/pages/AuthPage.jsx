@@ -42,6 +42,14 @@ export default function AuthPage() {
         transition={{ duration: 0.5, ease: [0.16,1,0.3,1] }}
         className="relative w-full max-w-md"
       >
+        {/* Close button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="absolute -top-2 -right-2 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all"
+          title="Go back"
+        >
+          <span className="material-symbols-outlined text-lg">close</span>
+        </button>
         {/* logo */}
         <div className="flex justify-center mb-8">
           <Link to="/" className="flex items-center gap-3">

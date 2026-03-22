@@ -58,8 +58,12 @@ export default function App() {
           <Route path="/events" element={<><Navbar solid /><EventsPage /></>} />
           <Route path="/resources" element={<><Navbar solid /><ResourcesPage /></>} />
           <Route path="/courses" element={<><Navbar solid /><CoursesPage /></>} />
-          <Route path="/practice" element={<><Navbar solid /><PracticePage /></>} />
-          <Route path="/practice/:id" element={<ProblemSolverPage />} />
+          <Route path="/practice" element={
+            <ProtectedRoute><Navbar solid /><PracticePage /></ProtectedRoute>
+          } />
+          <Route path="/practice/:id" element={
+            <ProtectedRoute><ProblemSolverPage /></ProtectedRoute>
+          } />
           <Route path="/game" element={<DSARacerPage />} />
           <Route path="/workshops" element={<><Navbar solid /><RoadmapPage /></>} />
           <Route path="/auth" element={<AuthPage />} />
