@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import { API_BASE } from '../config/api'
 
 // Data now fetched from the backend API
 
@@ -21,7 +22,7 @@ export default function LeaderboardPage() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/leaderboard?filter=${filter}`)
+        const res = await fetch(`${API_BASE}/api/leaderboard?filter=${filter}`)
         const data = await res.json()
         
         // Map backend data to UI expectations
@@ -54,7 +55,7 @@ export default function LeaderboardPage() {
   useEffect(() => {
     const fetchQOTD = async () => {
       try {
-        const res = await fetch('http://localhost:5005/api/daily-question')
+        const res = await fetch(`${API_BASE}/api/daily-question`)
         const data = await res.json()
         setQotd(data)
       } catch (err) {

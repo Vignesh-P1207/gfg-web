@@ -10,6 +10,7 @@ import { oneDark } from '@codemirror/theme-one-dark'
 import { syntaxHighlighting, defaultHighlightStyle, bracketMatching, indentOnInput } from '@codemirror/language'
 import { autocompletion, closeBrackets } from '@codemirror/autocomplete'
 import { useAuth } from '../context/AuthContext'
+import { API_BASE } from '../config/api'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const LOCKOUT_MS = 24 * 60 * 60 * 1000 // 24 hours
@@ -370,7 +371,7 @@ export default function CodeRunner({ problem, compact = false }) {
           finalCode = code + '\n' + harness
         }
 
-        const response = await fetch('http://localhost:5005/api/execute', {
+        const response = await fetch(`${API_BASE}/api/execute`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ language: langMap[language], version: '3.10.0', files: [{ content: finalCode }] }),

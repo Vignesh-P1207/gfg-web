@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: gfg-web-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        value: https://gfg-web-nine.vercel.app
+    autoDeploy: true
