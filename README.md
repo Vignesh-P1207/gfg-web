@@ -1,56 +1,128 @@
-# GFG X RIT - Web Application
+<div align="center">
 
-## 🌐 Live Deployment (Vercel)
+<img src="_vite_scaffold/public/images/gfg-logo.png" alt="GFG X RIT Logo" width="120" />
 
-The website is deployed on **Vercel** and can be accessed here:
-- **Live URL:** https://gfg-web-rho.vercel.app/
+# GFG Student Chapter — RIT
 
-> **Recommended:** Open the site on a **PC / laptop (desktop view)** for the best experience.
+### Official Web Platform of the GeeksforGeeks Student Chapter at RIT
 
-This repository contains the source code for the official website of the GFG Student Chapter at RIT. Our platform is built using **React**, **Vite**, **Tailwind CSS V4**, and **Framer Motion** for elegant animations.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-gfg--web--rho.vercel.app-brightgreen?style=for-the-badge&logo=vercel&logoColor=white)](https://gfg-web-rho.vercel.app/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 
-## 🚀 Running the Project Locally
+> Best experienced on **desktop / PC** for full visual fidelity.
 
-Follow these steps to set up and run the website on your local machine if you have just cloned the repository:
+</div>
 
-### 1. Prerequisites
-Ensure you have the following installed on your machine:
-- **[Node.js](https://nodejs.org/)** (v18 or higher is recommended)
-- **Git**
+---
 
-### 2. Clone the Repository
-Open your terminal and clone the repository to your local machine:
+## Tech Stack
+
+<div align="center">
+
+| Layer | Technology |
+|---|---|
+| Frontend Framework | ![React](https://img.shields.io/badge/React%2019-20232A?style=flat-square&logo=react&logoColor=61DAFB) |
+| Build Tool | ![Vite](https://img.shields.io/badge/Vite%207-646CFF?style=flat-square&logo=vite&logoColor=white) |
+| Styling | ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS%20v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white) |
+| Animations | ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-0055FF?style=flat-square&logo=framer&logoColor=white) |
+| Routing | ![React Router](https://img.shields.io/badge/React%20Router%20v7-CA4245?style=flat-square&logo=reactrouter&logoColor=white) |
+| Code Editor | ![CodeMirror](https://img.shields.io/badge/CodeMirror%206-D30707?style=flat-square&logo=codemirror&logoColor=white) |
+| Backend Runtime | ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white) |
+| Backend Framework | ![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white) |
+| Database | ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white) |
+| Deployment | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) |
+
+</div>
+
+---
+
+## Features
+
+- **Home Page** — Animated landing with video overlay, scroll-driven Framer Motion effects, 3D-tilted coordinator gallery, and a mission modal.
+- **Interactive Code Runner** — In-browser IDE powered by CodeMirror with support for JavaScript, Python, C++, and Java. JS runs client-side; other languages execute via the backend `/api/execute` endpoint.
+- **DSA Racer Game** — A browser-based driving mini-game where players dodge wrong answers to DSA questions. Includes collision detection, score tracking, and Web Audio API sound effects.
+- **Roadmaps** — Tabbed, animated learning timelines for DSA, Web Dev, AI/ML, Data Science, Cyber Security, and more.
+- **Courses Center** — Curated course cards with curriculum details, difficulty ratings, and links to GFG, LeetCode, HackerRank, freeCodeCamp, and Coursera.
+- **Leaderboard** — Top 20 users ranked by XP, enriched with DiceBear avatars and trend indicators.
+- **Auth & Protected Routes** — Community, Leaderboard, and Settings pages are gated behind `AuthContext` with automatic redirect to `/auth`.
+
+---
+
+## Project Structure
+
+```
+gfg-web/
+├── _vite_scaffold/          # React frontend (Vite)
+│   ├── public/              # Static assets (images, icons, video)
+│   └── src/
+│       ├── components/      # Reusable UI components
+│       ├── context/         # AuthContext
+│       ├── pages/           # Route-level page components
+│       ├── App.jsx
+│       └── main.jsx
+└── backend/                 # Node.js + Express API
+    ├── server.js            # API routes & code execution engine
+    ├── database.js          # SQLite setup & schema
+    └── community.db         # SQLite database file
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v18+
+- Git
+
+### 1. Clone the repo
+
 ```bash
 git clone <your-repository-url>
 cd gfg-web
 ```
 
-### 3. Navigate to the Source Directory
-All the modern React application code lives inside the `_vite_scaffold` directory. Navigate into it:
+### 2. Run the Frontend
+
 ```bash
 cd _vite_scaffold
-```
-
-### 4. Install Dependencies
-Install all the necessary packages (like React, Tailwind, Framer Motion) using npm:
-```bash
 npm install
-```
-
-### 5. Start the Development Server
-Once the installation is complete, start the Vite development server:
-```bash
 npm run dev
 ```
 
-### 6. Open in Browser
-The terminal will display a local URL (usually `http://localhost:5173/`). `Ctrl+Click` (or `Cmd+Click` on Mac) that link to view the website in your browser!
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### 3. Run the Backend (optional — needed for Python/C++/Java execution)
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+The API will be available at [http://localhost:3000](http://localhost:3000).
 
 ---
 
-### Tech Stack
-- Frontend Framework: **React 19**
-- Build Tool: **Vite 6**
-- Styling: **Tailwind CSS v4** & Vanilla CSS
-- Animations: **Framer Motion**
-- Routing: **React Router DOM v7
+## API Reference
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/leaderboard` | Top 20 users by XP |
+| `GET` | `/api/daily-question` | Rotating DSA question of the day |
+| `GET` | `/api/users/:username` | Fetch user profile |
+| `POST` | `/api/users/:username/xp` | Award XP to a user |
+| `POST` | `/api/users/:username/streak` | Update user streak |
+| `POST` | `/api/execute` | Remote code execution (Python, C++, Java) |
+
+---
+
+<div align="center">
+
+Made with ❤️ by the GFG Student Chapter — RIT
+
+</div>
