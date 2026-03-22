@@ -10,7 +10,7 @@
 
 <br/>
 
-[![🌐 Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-Visit%20Website-2ea44f?style=for-the-badge)](https://gfg-web-rho.vercel.app/)
+[![🌐 Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-Visit%20Website-2ea44f?style=for-the-badge)](https://gfg-web-nine.vercel.app/)
 &nbsp;
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 &nbsp;
