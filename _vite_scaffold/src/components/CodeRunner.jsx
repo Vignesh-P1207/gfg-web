@@ -274,26 +274,71 @@ export default function CodeRunner({ problem, compact = false }) {
         setOutput([{ type: 'error', text: `❌ ${error.name}: ${error.message}` }])
       }
     } else {
-      // For non-JS languages, simulate execution
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      const endTime = performance.now()
-      setExecutionTime((endTime - startTime).toFixed(2))
-      
-      setOutput([
-        { type: 'info', text: `🔧 ${LANGUAGES.find(l => l.id === language)?.name} execution requires a backend compiler.` },
-        { type: 'info', text: '💡 To run locally, copy the code and use your local compiler/interpreter.' },
-        { type: 'log', text: `──── Simulated Output ────` },
-        { type: 'result', text: `→ ${problem?.examples?.[0]?.output || 'Expected output'}` },
-      ])
+      // For non-JS languages, send to backend compiler API
+      try {
+        const langMap = {
+          'python': { lang: 'python', version: '3.10.0' },
+          'cpp': { lang: 'c++', version: '10.2.0' },
+          'java': { lang: 'java', version: '15.0.2' }
+        };
+        const pistonLang = langMap[language];
 
-      if (problem?.examples) {
-        setTestResults(problem.examples.map((ex, i) => ({
-          case: i + 1,
-          input: ex.input,
-          expected: ex.output,
-          actual: `${ex.output} (simulated)`,
-          passed: true,
-        })))
+        const response = await fetch('http://localhost:5005/api/execute', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            language: pistonLang.lang,
+            version: pistonLang.version,
+            files: [{ content: code }]
+          })
+        });
+
+        const data = await response.json();
+        const endTime = performance.now();
+        setExecutionTime((endTime - startTime).toFixed(2));
+
+        if (response.ok && data.run) {
+          const runOutput = data.run;
+          const outLines = [];
+          if (runOutput.stdout) outLines.push({ type: 'log', text: runOutput.stdout });
+          if (runOutput.stderr) outLines.push({ type: 'error', text: runOutput.stderr });
+          
+          if (outLines.length === 0) {
+            outLines.push({ type: 'info', text: '✓ Code executed successfully (no output)' });
+          }
+
+          setOutput(outLines);
+
+          if (problem?.examples) {
+            setTestResults(problem.examples.map((ex, i) => {
+              const actualRaw = runOutput.stdout ? runOutput.stdout.trim() : '';
+              let actualValue = actualRaw;
+              
+              if (actualRaw.includes('Result:')) {
+                 actualValue = actualRaw.split('Result:').pop().trim();
+              } else if (actualRaw.includes('result:')) {
+                 actualValue = actualRaw.split('result:').pop().trim();
+              }
+              
+              actualValue = actualValue.replace(/[\[\]'"]/g, '').trim();
+              const expectedOutput = ex.output.replace(/[\[\]'"]/g, '').trim();
+
+              return {
+                case: i + 1,
+                input: ex.input,
+                expected: ex.output,
+                actual: actualRaw || 'No output',
+                passed: actualValue === expectedOutput,
+              };
+            }));
+          }
+        } else {
+          setOutput([{ type: 'error', text: data.error || data.message || 'Execution failed' }]);
+        }
+      } catch (err) {
+        const endTime = performance.now();
+        setExecutionTime((endTime - startTime).toFixed(2));
+        setOutput([{ type: 'error', text: `❌ Request failed: ${err.message}` }]);
       }
     }
 
