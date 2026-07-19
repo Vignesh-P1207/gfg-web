@@ -418,7 +418,6 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 [![GitHub forks](https://img.shields.io/github/forks/Wicky696969/gfg-web?style=social)](https://github.com/Wicky696969/gfg-web/fork)
 
 </div>
-VITE_SUPABASE_URL=https://hvbdaffngdkcroexvrjd.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2YmRhZmZuZ2RrY3JvZXh2cmpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNzk3NTIsImV4cCI6MjA5Njc1NTc1Mn0.-r2JG4v_0WLTX6Tbo3DV-buzLM2FrSeF-BICxCCiGV4
+
 
 
